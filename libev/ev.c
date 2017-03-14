@@ -414,7 +414,7 @@
 #endif
 
 #if EV_USE_INOTIFY
-# include <sys/statfs.h>
+#include <sys/statvfs.h>
 # include <sys/inotify.h>
 /* some very old inotify.h headers don't have IN_DONT_FOLLOW */
 # ifndef IN_DONT_FOLLOW
@@ -3922,7 +3922,7 @@ infy_add (EV_P_ ev_stat *w)
 
   if (w->wd >= 0)
     {
-      struct statfs sfs;
+      struct statvfs sfs;
 
       /* now local changes will be tracked by inotify, but remote changes won't */
       /* unless the filesystem is known to be local, we therefore still poll */
@@ -3930,20 +3930,20 @@ infy_add (EV_P_ ev_stat *w)
 
       if (!fs_2625)
         w->timer.repeat = w->interval ? w->interval : DEF_STAT_INTERVAL;
-      else if (!statfs (w->path, &sfs)
-               && (sfs.f_type == 0x1373 /* devfs */
-                   || sfs.f_type == 0x4006 /* fat */
-                   || sfs.f_type == 0x4d44 /* msdos */
-                   || sfs.f_type == 0xEF53 /* ext2/3 */
-                   || sfs.f_type == 0x72b6 /* jffs2 */
-                   || sfs.f_type == 0x858458f6 /* ramfs */
-                   || sfs.f_type == 0x5346544e /* ntfs */
-                   || sfs.f_type == 0x3153464a /* jfs */
-                   || sfs.f_type == 0x9123683e /* btrfs */
-                   || sfs.f_type == 0x52654973 /* reiser3 */
-                   || sfs.f_type == 0x01021994 /* tmpfs */
-                   || sfs.f_type == 0x58465342 /* xfs */))
-        w->timer.repeat = 0.; /* filesystem is local, kernel new enough */
+      /* else if (!statfs (w->path, &sfs) */
+      /*          && (sfs.f_type == 0x1373 /\* devfs *\/ */
+      /*              || sfs.f_type == 0x4006 /\* fat *\/ */
+      /*              || sfs.f_type == 0x4d44 /\* msdos *\/ */
+      /*              || sfs.f_type == 0xEF53 /\* ext2/3 *\/ */
+      /*              || sfs.f_type == 0x72b6 /\* jffs2 *\/ */
+      /*              || sfs.f_type == 0x858458f6 /\* ramfs *\/ */
+      /*              || sfs.f_type == 0x5346544e /\* ntfs *\/ */
+      /*              || sfs.f_type == 0x3153464a /\* jfs *\/ */
+      /*              || sfs.f_type == 0x9123683e /\* btrfs *\/ */
+      /*              || sfs.f_type == 0x52654973 /\* reiser3 *\/ */
+      /*              || sfs.f_type == 0x01021994 /\* tmpfs *\/ */
+      /*              || sfs.f_type == 0x58465342 /\* xfs *\/)) */
+      /*   w->timer.repeat = 0.; /\* filesystem is local, kernel new enough *\/ *
       else
         w->timer.repeat = w->interval ? w->interval : NFS_STAT_INTERVAL; /* remote, use reduced frequency */
     }

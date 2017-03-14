@@ -57,7 +57,7 @@ void ERROR(const char *s)
 }
 #endif
 
-#ifdef __MINGW32__
+#ifdef __QNXNTO__
 char *ss_itoa(int i)
 #else
 char *itoa(int i)
@@ -88,7 +88,6 @@ char *itoa(int i)
     }
     return p;
 }
-
 /*
  * setuid() and setgid() for a specified user.
  */

@@ -103,19 +103,13 @@ while(0)
 
 #endif
 
-#ifdef __MINGW32__
-
-#ifdef ERROR
-#undef ERROR
-#endif
-#define ERROR(s) ss_error(s)
+#ifdef __QNXNTO__
 
 char *ss_itoa(int i);
+void ERROR(const char *s);
 
 #else
-
-void ERROR(const char *s);
-char *itoa(int i);
+//char *itoa(int i);
 
 #endif
 

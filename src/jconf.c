@@ -38,7 +38,7 @@ static char *to_string(const json_value *value)
     }
     else if (value->type == json_integer)
     {
-#ifdef __MINGW32__
+#ifdef __QNXNTO__
         return strdup(ss_itoa(value->u.integer));
 #else
         return strdup(itoa(value->u.integer));

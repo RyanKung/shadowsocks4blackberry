@@ -124,8 +124,8 @@ typedef struct
 #define RC2_CFB             13
 #define SEED_CFB            14
 
-#define min(a,b) (((a)<(b))?(a):(b))
-#define max(a,b) (((a)>(b))?(a):(b))
+// #define min(a,b) (((a)<(b))?(a):(b))
+// #define max(a,b) (((a)>(b))?(a):(b))
 
 struct enc_ctx
 {
